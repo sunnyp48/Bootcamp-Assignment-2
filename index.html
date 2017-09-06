@@ -1,0 +1,125 @@
+
+
+
+<!DOCTYPE html>
+<html> 
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="directoryApp">
+
+    <div class="container">
+      <div class="row">
+        <h1>UF Directory App</h1>
+      </div>
+      <div class="row" ng-controller="ListingsController">
+        <div class="col-md-6">
+          <div class="input-group" id="searchBar">
+
+            <!-- 
+                Implement a way to filter through listings using the search bar 
+              -->
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="text" class="form-control" ng-model="search" placeholder="Search">
+          </div>
+          <div class="tableWrapper">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>Code</th>
+                <th>Building Name</th>
+                <th></th>
+              </tr>
+
+              <!-- 
+                  Fill in the rest of the table:
+                      * populate the rows with the code and name of each listing
+                      * include a way to remove individual listings 
+
+          <tr nowrap ng-repeat="item in listings | filter:serach | orderBy: 'code'">  
+                <td>{{item.code}} </td>
+                <td>{{item.name}}</td>
+                <td></td>
+                <td> <button class='btn btn-danger' ng-click="deleteListing($index)">Remove</button> </td>
+
+        <td><input type="checkbox" ng-model="item.checked" ng-true-value="1" ng-false-value="0"></td>
+        </tr>
+
+                --> 
+                 <tr nowrap ng-repeat="item in listings | filter:search | orderBy: 'code'"
+                  ng-click = "showDetails(listings.indexOf(item))">
+
+                <td>{{item.code}} </td>
+                <td>{{item.name}}</td>
+                <td> <button class='btn btn-danger' ng-click="deleteListing(item)">Remove</button> </td>
+                <span class="label" ng-bind="item.statut_name"></span>
+
+               <td><button class="btn btn-success">More Info</button></td>
+                </tr>
+                
+       
+                
+                <!--
+                <td nowrap> <li ng-repeat="item in listings | filter:search">
+                {{item.name}}  
+                </li></td>
+
+                -->
+
+                <!--
+                 <td nowrap> <ul ng-repeat="item in listings">
+                {{item.coordinates}}  
+                </ul></td>
+              -->
+
+
+            </table>
+          </div>
+          <!-- 
+              Write an HTML form that adds new listings to the directory 
+            -->
+            <br> <br> <br>
+            <form ng-submit="addListing()">
+              <h4> Code Name </h4>
+              <input type="text" placeholder="Code Name" class="newInputTextBox" ng-model="input.code">
+              <h4> Building Name </h4>
+              <input type="text" placeholder="Building Name" class="newInputTextBox" ng-model="input.name"> <br>
+              <h4> Latitude </h4>
+               <input type="text" placeholder="Latitude" class="newInputTextBox" ng-model="input.coordinates.latitude">
+               <h4> Longitude </h4>
+               <input type="text" placeholder="Longitude" class="newInputTextBox" ng-model="input.coordinates.longitude">
+               <h4> Address </h4>
+               <input type="text" placeholder="Address" class="newInputTextBox" ng-model="input.address">
+               <br>
+              <input type="submit" class="btn btn-success" value="Add to directory"> 
+              <br>
+           </form>
+
+
+        </div>
+        <div class="col-md-6">
+          <div class="jumbotron">
+            <h2>Detailed Information</h2>
+            <!-- 
+              Include a way to display detailed information about an individual listing:
+                   * consider how to use ng-click within the the table to implement this feature
+             -->
+
+              <h3> Code: {{add.code}}</h3>
+              <h3> Building Name: {{add.name}}</h3>
+              <h3> Latitude: {{add.coordinates.latitude}}</h3>
+              <h3> Longitude: {{add.coordinates.longitude}}</h3>
+              <h3> Address: {{add.address}}</h3>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="listingController.js"></script>
+    <script src="listingFactory.js"></script>
+  </body>
+</html>
